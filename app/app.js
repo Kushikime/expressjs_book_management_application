@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 
+const { connectMongoDb } = require('../database/db');
+
 const userRouter = require('../router/userRouter');
 const healthRouter = require('../router/healthRouter');
 
@@ -30,6 +32,7 @@ app.use((error, req, res, next) => {
 });
 
 app.listen(PORT, () => {
+  connectMongoDb();
   console.log(`Server is running on port ${PORT}`);
 });
 
