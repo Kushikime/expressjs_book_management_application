@@ -16,7 +16,7 @@ const disconnectMongoDb = async () => {
 };
 
 const findUser = async (user) => {
-  return await UserModel.findOne(user);
+  return await UserModel.findOne(user).exec();
 };
 
 const saveUser = async (newUser) => {
