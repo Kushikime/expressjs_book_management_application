@@ -1,10 +1,26 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connection.on('connected', () => console.log('Successfully connected to MongoDB'));
+const UserModel = require('../models/userModel');
+
+mongoose.connection.on('connected', () =>
+  console.log('Successfully connected to MongoDB'),
+);
 
 const connectMongoDb = async () => {
   await mongoose.connect(process.env.MONGODB_CONNECTION_URI);
 };
 
-module.exports = { connectMongoDb };
+const disconnectMongoDb = async () => {
+  await mongoose.connection.close();
+};
+
+const findUser = async (user) => {
+  return await UserModel.findOne(user);
+};
+
+const saveUser = async (newUser) => {
+  return await newUser.save();
+};
+
+module.exports = { connectMongoDb, disconnectMongoDb, findUser, saveUser };
