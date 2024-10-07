@@ -1,4 +1,4 @@
-# Express.js book management application server
+# Express.js book management application client
 
 ## To run the application in development mode
 
