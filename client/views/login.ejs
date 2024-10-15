@@ -28,10 +28,47 @@
   </head>
   <body id="page-top">
     <!-- Navigation-->
-    <%-include('includes/nav.ejs')%>
+    <%-include('includes/header.ejs')%>
 
-    <!-- Masthead-->
-    <%-include('includes/masthead.ejs', {pageTitle: 'Login page'})%>
+    <div class="content">
+      <form
+        class="loginForm"
+        id="loginForm"
+        name="loginForm"
+        method="post"
+        action="/login"
+      >
+        <div class="input-group">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder=" "
+            required
+          />
+          <label for="email">Email</label>
+          <% if (typeof errors === 'object' && !!errors?.email?.message) {%>
+          <span><%-errors.email.message%></span>
+          <% } %>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder=" "
+            required
+          />
+          <label for="password">Password</label>
+          <% if (typeof errors === 'object' && !!errors?.password?.message) {%>
+          <span><%-errors.password.message%></span>
+          <% } %>
+        </div>
+
+        <button class="btn primary" type="submit">Login</button>
+      </form>
+    </div>
 
     <!-- Footer-->
     <%-include('includes/footer.ejs')%>
