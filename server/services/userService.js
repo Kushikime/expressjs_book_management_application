@@ -16,6 +16,7 @@ class UserService {
   }
 
   handleError(res, status, message) {
+    console.error(`API Error. Status: ${status}. Message: ${message}`);
     return res.status(status).json({ message });
   }
 
@@ -64,6 +65,10 @@ class UserService {
   }
 
   async registerUser(req, res) {
+    console.log('req.data: ', req.body);
+    if (!req.body || !Object.keys(req.body).length) {
+      return this.handleError(res, 400, 'Client error: no data was provided');
+    }
     try {
       const user = await findUser({ email: req.body.email });
       if (user) {
