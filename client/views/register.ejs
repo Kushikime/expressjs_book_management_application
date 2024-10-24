@@ -28,92 +28,117 @@
   </head>
   <body id="page-top">
     <!-- Navigation-->
-    <%-include('includes/nav.ejs')%>
+    <%-include('includes/header.ejs')%>
 
-    <!-- Masthead-->
-    <%-include('includes/masthead.ejs', {pageTitle: 'Sign up page'})%>
-
-    <!-- Signup-->
-    <section class="signup-section" id="signup">
-      <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5">
-          <div class="col-md-10 col-lg-8 mx-auto text-center">
-            <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-            <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
-            <!-- * * * * * * * * * * * * * * *-->
-            <!-- * * SB Forms Contact Form * *-->
-            <!-- * * * * * * * * * * * * * * *-->
-            <!-- This form is pre-integrated with SB Forms.-->
-            <!-- To make this form functional, sign up at-->
-            <!-- https://startbootstrap.com/solution/contact-forms-->
-            <!-- to get an API token!-->
-            <form
-              class="form-signup"
-              id="contactForm"
-              data-sb-form-api-token="API_TOKEN"
-            >
-              <!-- Email address input-->
-              <div class="row input-group-newsletter">
-                <div class="col">
-                  <input
-                    class="form-control"
-                    id="emailAddress"
-                    type="email"
-                    placeholder="Enter email address..."
-                    aria-label="Enter email address..."
-                    data-sb-validations="required,email"
-                  />
-                </div>
-                <div class="col-auto">
-                  <button
-                    class="btn btn-primary disabled"
-                    id="submitButton"
-                    type="submit"
-                  >
-                    Notify Me!
-                  </button>
-                </div>
-              </div>
-              <div
-                class="invalid-feedback mt-2"
-                data-sb-feedback="emailAddress:required"
-              >
-                An email is required.
-              </div>
-              <div
-                class="invalid-feedback mt-2"
-                data-sb-feedback="emailAddress:email"
-              >
-                Email is not valid.
-              </div>
-              <!-- Submit success message-->
-              <!---->
-              <!-- This is what your users will see when the form-->
-              <!-- has successfully submitted-->
-              <div class="d-none" id="submitSuccessMessage">
-                <div class="text-center mb-3 mt-2 text-white">
-                  <div class="fw-bolder">Form submission successful!</div>
-                  To activate this form, sign up at
-                  <br />
-                  <a href="https://startbootstrap.com/solution/contact-forms"
-                    >https://startbootstrap.com/solution/contact-forms</a
-                  >
-                </div>
-              </div>
-              <!-- Submit error message-->
-              <!---->
-              <!-- This is what your users will see when there is-->
-              <!-- an error submitting the form-->
-              <div class="d-none" id="submitErrorMessage">
-                <div class="text-center text-danger mb-3 mt-2">
-                  Error sending message!
-                </div>
-              </div>
-            </form>
-          </div>
+    <div class="content">
+      <form
+        class="registerForm"
+        id="signUpForm"
+        name="signUpForm"
+        method="post"
+        action="/register"
+      >
+        <div class="input-group">
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder=" "
+            required
+          />
+          <label for="firstName">First Name</label>
+          <% if (typeof errors === 'object' && !!errors?.firstName?.message) {%>
+          <span><%-errors.firstName.message%></span>
+          <% } %>
         </div>
-      </div>
-    </section>
+
+        <div class="input-group">
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            placeholder=" "
+            required
+          />
+          <label for="lastName">Last Name</label>
+          <% if (typeof errors === 'object' && !!errors?.lastName?.message) {%>
+          <span><%-errors.lastName.message%></span>
+          <% } %>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            id="address"
+            name="address"
+            placeholder=" "
+            required
+          />
+          <label for="address">Address</label>
+          <% if (typeof errors === 'object' && !!errors?.address?.message) {%>
+          <span><%-errors.address.message%></span>
+          <% } %>
+        </div>
+
+        <div class="input-group">
+          <input type="text" id="city" name="city" placeholder=" " required />
+          <label for="city">City</label>
+          <% if (typeof errors === 'object' && !!errors?.city?.message) {%>
+          <span><%-errors.city.message%></span>
+          <% } %>
+        </div>
+
+        <div class="input-group">
+          <input type="text" id="state" name="state" placeholder=" " required />
+          <label for="state">State</label>
+          <% if (typeof errors === 'object' && !!errors?.state?.message) {%>
+          <span><%-errors.state.message%></span>
+          <% } %>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            id="zipCode"
+            name="zipCode"
+            placeholder=" "
+            required
+          />
+          <label for="zipCode">Zip Code</label>
+          <% if (typeof errors === 'object' && !!errors?.zipCode?.message) {%>
+          <span><%-errors.zipCode.message%></span>
+          <% } %>
+        </div>
+        <div class="input-group">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder=" "
+            required
+          />
+          <label for="password">Password</label>
+          <% if (typeof errors === 'object' && !!errors?.password?.message) {%>
+          <span><%-errors.password.message%></span>
+          <% } %>
+        </div>
+        <div class="input-group">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder=" "
+            required
+          />
+          <label for="email">Email</label>
+          <% if (typeof errors === 'object' && !!errors?.email?.message) {%>
+          <span><%-errors.email.message%></span>
+          <% } %>
+        </div>
+
+        <button class="btn primary" type="submit">Sign up</button>
+      </form>
+    </div>
 
     <!-- Footer-->
     <%-include('includes/footer.ejs')%>
